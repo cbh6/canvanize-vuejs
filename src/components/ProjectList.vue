@@ -1,47 +1,44 @@
 <template>
-  <div>Projects
-    <ul v-for="project in projectList">
-        <li> {{project.project}} </li>
-    </ul>
+  <div class="ui container">
+    <div class="ui three column grid container">
+      <project-card v-for="project in projects" v-bind:project="project"></project-card>
+    </div>
   </div>
 </template>
 
-<script type = "text/javascript" >
+<script>
+
+import ProjectCard from "./ProjectCard"
+
 export default {
   name: 'projectList',
+  components: {
+    ProjectCard
+  },
   data() {
     return {
-      projectList: this.getProjectList()
+      projects: [{
+        title: 'Startup A',
+        project: 'Project A',
+        done: false,
+      }, {
+        title: 'Startup B',
+        project: 'Project B',
+        done: true,
+      }, {
+        title: 'Startup C',
+        project: 'Project C',
+        done: false,
+      }, {
+        title: 'Startup D',
+        project: 'Project D',
+        done: false,
+      }]
     }
-  },
-  methods: {
-    getProjectList(){
-      return
-        [{
-          title: 'Todo A',
-          project: 'Project A',
-          done: false
-        }, {
-          title: 'Todo B',
-          project: 'Project B',
-          done: true
-        }, {
-          title: 'Todo C',
-          project: 'Project C',
-          done: false
-        }, {
-          title: 'Todo D',
-          project: 'Project D',
-          done: false
-        }]
-
-    }
-  },
-  mounted() {
-    this.projectList = this.getProjectList();
   }
-};
+}
 </script>
 
-<style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
 </style>
