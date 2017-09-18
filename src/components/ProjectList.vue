@@ -39,6 +39,27 @@ export default {
         done: false,
       }]
     }
+  },
+  created: function() {
+    if (localStorage.projects){
+      this.projects = this.getData("projects");
+    }else{
+      this.initApp();
+    }
+  },
+  methods: {
+    setData: function(key, data){
+      var projects = JSON.stringify(data);
+      localStorage.setItem(key, projects);
+    },
+    getData: function(key){
+      var project = localStorage.getItem(key);
+      return JSON.parse(project);
+    },
+    initApp: function(){
+      localStorage.clear();
+      this.setData("projects", this.projects);
+    }
   }
 }
 </script>

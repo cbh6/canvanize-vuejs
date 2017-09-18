@@ -1,0 +1,22 @@
+projects : [
+{
+  "id": 1,
+  "title": "Startup A",
+  "project": "Project A",
+  "done": false,
+},{
+  "id": 2,
+  "title": "Startup B",
+  "project": "Project B",
+  "done": false,
+},{
+  "id": 3,
+  "title": "Startup C",
+  "project": "Project C",
+  "done": false,
+},{
+  "id": 4,
+  "title": "Startup D",
+  "project": "Project D",
+  "done": false,
+}];
