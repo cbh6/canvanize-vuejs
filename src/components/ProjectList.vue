@@ -1,18 +1,23 @@
 <template>
-  <div class="ui container">
-    <div class="ui three column grid container">
-      <project-card v-for="project in projects" v-bind:project="project" :key="project.id"></project-card>
-    </div>
+  <div>
+  <div>
+    <create-project v-on:create-project="createProject"></create-project>
   </div>
+  <div class="ui three column grid container">
+    <project-card v-for="project in projects" v-bind:project="project" :key="project.id"></project-card>
+  </div>
+</div>
 </template>
 
 <script>
 
 import ProjectCard from "./ProjectCard"
+import CreateProject from "./CreateProject"
 
 export default {
   name: 'projectList',
   components: {
+    CreateProject,
     ProjectCard
   },
   data() {
@@ -58,6 +63,11 @@ export default {
     },
     initApp: function(){
       localStorage.clear();
+      this.setData("projects", this.projects);
+    },
+    createProject(newProject) {
+      this.projects.push(newProject);
+      newProject.id = this.projects.length + 1;
       this.setData("projects", this.projects);
     }
   }
