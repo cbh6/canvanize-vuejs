@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-#app * {
+#app {
   font-family: 'Muli', sans-serif;
 }
 

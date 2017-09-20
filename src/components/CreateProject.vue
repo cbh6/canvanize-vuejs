@@ -1,9 +1,9 @@
 <template>
   <div class='ui basic content center aligned segment'>
-    <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
+    <button class='ui basic button icon' v-on:click="openForm">
       <i class='plus icon'></i>
     </button>
-    <div class='ui centered card' v-show="isCreating">
+    <div class='ui tiny modal card'>
       <div class='content'>
         <div class='ui form'>
           <div class='field'>
@@ -14,11 +14,11 @@
             <label>Project</label>
             <input v-model="projectText" type='text'>
           </div>
-          <div class='ui two button attached buttons'>
-            <button class='ui basic blue button' v-on:click="sendForm()">
+          <div class='actions'>
+            <button class='ui approve green button' v-on:click="sendForm()">
               Create
             </button>
-            <button class='ui basic red button' v-on:click="closeForm">
+            <button class='ui cancel red button' v-on:click="closeForm">
               Cancel
             </button>
           </div>
@@ -34,15 +34,14 @@ export default {
     return {
       titleText: '',
       projectText: '',
-      isCreating: false,
     };
   },
   methods: {
     openForm() {
-      this.isCreating = true;
+      $('.tiny.modal').modal('show');
     },
     closeForm() {
-      this.isCreating = false;
+      $('.tiny.modal').modal('hide');
     },
     sendForm() {
       if (this.titleText.length > 0 && this.projectText.length > 0) {
@@ -55,9 +54,15 @@ export default {
         });
         this.titleText = '';
         this.projectText = '';
-        this.isCreating = false;
+        this.closeForm();
       }
     },
   },
 };
 </script>
+
+<style>
+.actions {
+  float: right;
+}
+</style>
