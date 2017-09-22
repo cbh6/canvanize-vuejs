@@ -3,9 +3,9 @@
     <div class='ui centered fluid card'>
       <div class='content'>
           <div class='header'>
-              <h3 class="left aligned">{{project.title}}</h3>
+            {{project.title}}
           </div>
-
+          <div class="description"> {{project.description}}</div>
           <div class="ui horizontal segments">
               <div class="ui card segment">
                 <div class="header teal ui top attached label">
@@ -13,7 +13,9 @@
                 </div>
                 <div class="content">
                   <div class="description">
-                    Aquí van las notas
+                    <p v-for="note in project.notes">
+                      {{note}}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -23,7 +25,9 @@
                 </div>
                 <div class="content">
                   <div class="description">
-                    Eventos
+                    <p v-for="reminder in project.reminders">
+                      {{reminder}}
+                    </p>
                   </div>
                 </div>
               </div>

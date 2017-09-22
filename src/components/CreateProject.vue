@@ -11,8 +11,8 @@
             <input v-model="titleText" type='text'>
           </div>
           <div class='field'>
-            <label>Project</label>
-            <input v-model="projectText" type='text'>
+            <label>Description</label>
+            <input v-model="descText" type='text'>
           </div>
           <div class='actions'>
             <button class='ui approve green button' v-on:click="sendForm()">
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       titleText: '',
-      projectText: '',
+      descText: '',
     };
   },
   methods: {
@@ -44,16 +44,16 @@ export default {
       $('.tiny.modal').modal('hide');
     },
     sendForm() {
-      if (this.titleText.length > 0 && this.projectText.length > 0) {
+      if (this.titleText.length > 0 && this.descText.length > 0) {
         const title = this.titleText;
-        const project = this.projectText;
+        const description = this.descText;
         this.$emit('create-project', {
           title,
-          project,
+          description,
           done: false,
         });
         this.titleText = '';
-        this.projectText = '';
+        this.descText = '';
         this.closeForm();
       }
     },

@@ -16,9 +16,6 @@ export default {
 <style>
 #app {
   font-family: 'Muli', sans-serif;
-}
-
-#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

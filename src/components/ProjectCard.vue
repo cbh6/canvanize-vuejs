@@ -6,7 +6,7 @@
           {{ project.title }}
         </div>
         <div class='meta'>
-          {{ project.project }}
+          {{ project.description }}
         </div>
       </div>
     </div>
