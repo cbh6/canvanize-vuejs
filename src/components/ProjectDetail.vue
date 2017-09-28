@@ -9,37 +9,53 @@
           <div class="ui horizontal segments">
               <div class="ui card segment">
                 <div class="header teal ui top attached label">
-                  Notas
+                  Notes
                 </div>
                 <div class="content">
                   <div class="description">
-                    <p v-for="note in project.notes">
-                      {{note}}
-                    </p>
+                      <div class="ui icon message left aligned" v-for="note in project.notes">
+                        <div class="content">
+                          <div class="header">
+                            {{ note.title }}
+                          </div>
+                          <p>{{ note.text }}</p>
+                        </div>
+                      </div>
+                      <create-note v-on:create-note="createNote"></create-note>
                   </div>
                 </div>
               </div>
               <div class="card ui segment">
                 <div class="header blue ui top attached label">
-                  Agenda
+                  Diary
                 </div>
                 <div class="content">
                   <div class="description">
-                    <p v-for="reminder in project.reminders">
-                      {{reminder}}
-                    </p>
+                      <div class="ui icon message left aligned" v-for="reminder in project.reminders">
+                        <div class="content">
+                          <div class="header">
+                            {{ reminder.date }}
+                          </div>
+                          <p>{{ reminder.description }}</p>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> 
 </template>
 
 <script>
+import CreateNote from "./CreateNote"
+
 export default {
   props: ['id'],
+  components: {
+    CreateNote
+  },
   data() {
     return {
       project: ''
@@ -51,7 +67,23 @@ export default {
       return projects.find(function(data){
         return data.id == id;
       });
-
+    },
+    updateProject: function(){
+      // localStorage.setItem(key, projects);
+      var projects = JSON.parse(localStorage.getItem("projects"));
+      projects.forEach(
+        function(project){
+          if(project.hasOwnProperty('id') && this.project.id == key){
+            project = this.project;
+          }
+        }
+      );
+      localStorage.setItem('projects', JSON.stringify(projects));
+    },
+    createNote(newNote) {
+      //newNote.id = this.project.notes.length + 1;
+      this.project.notes.push(newNote);
+      this.updateProject();
     }
   },
   mounted: function() {

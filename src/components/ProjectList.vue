@@ -74,8 +74,8 @@ export default {
       this.setData("projects", this.projects);
     },
     createProject(newProject) {
-      this.projects.push(newProject);
       newProject.id = this.projects.length + 1;
+      this.projects.push(newProject);
       this.setData("projects", this.projects);
     }
   }
