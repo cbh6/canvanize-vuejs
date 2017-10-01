@@ -75,6 +75,8 @@ export default {
     },
     createProject(newProject) {
       newProject.id = this.projects.length + 1;
+      newProject.notes = [];
+      newProject.reminders = [];
       this.projects.push(newProject);
       this.setData("projects", this.projects);
     }

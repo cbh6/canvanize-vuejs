@@ -3,7 +3,7 @@
     <button class='ui basic button icon' v-on:click="openForm">
       <i class='plus icon'></i>
     </button>
-    <div class="ui icon message left aligned">
+    <div class="ui icon message left aligned" v-show="isCreating">
       <div class='ui form'>
         <div class='field'>
           <label>Title</label>

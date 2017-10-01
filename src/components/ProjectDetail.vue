@@ -70,15 +70,29 @@ export default {
     },
     updateProject: function(){
       // localStorage.setItem(key, projects);
-      var projects = JSON.parse(localStorage.getItem("projects"));
-      projects.forEach(
-        function(project){
-          if(project.hasOwnProperty('id') && this.project.id == key){
-            project = this.project;
-          }
-        }
-      );
-      localStorage.setItem('projects', JSON.stringify(projects));
+      // var projects = JSON.parse(localStorage.projects);
+      // for(var project of projects){
+      //   if(project.hasOwnProperty('id') && project.id == this.project.id){
+      //       project = this.project;
+      //     }
+      // }
+
+      var projects = JSON.parse(localStorage.projects);
+       for (var i = 0; i < projects.length; i++) {
+         if(projects[i].id === this.project.id){  //look for match with name
+             projects[i] = this.project;
+             break;  //exit loop since you found the person
+         }
+      }
+      localStorage.setItem("projects", JSON.stringify(projects));  //put the object back
+      // projects.forEach(
+      //   function(project){
+      //     if(project.hasOwnProperty('id') && this.project.id == key){
+      //       project = this.project;
+      //     }
+      //   }
+      // );
+      // localStorage.setItem('projects', JSON.stringify(projects));
     },
     createNote(newNote) {
       //newNote.id = this.project.notes.length + 1;
