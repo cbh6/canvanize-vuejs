@@ -39,6 +39,7 @@
                           <p>{{ reminder.description }}</p>
                         </div>
                       </div>
+                      <create-reminder v-on:create-reminder="createReminder"></create-reminder>
                   </div>
                 </div>
               </div>
@@ -50,11 +51,13 @@
 
 <script>
 import CreateNote from "./CreateNote"
+import CreateReminder from "./CreateReminder"
 
 export default {
   props: ['id'],
   components: {
-    CreateNote
+    CreateNote,
+    CreateReminder
   },
   data() {
     return {
@@ -69,34 +72,23 @@ export default {
       });
     },
     updateProject: function(){
-      // localStorage.setItem(key, projects);
-      // var projects = JSON.parse(localStorage.projects);
-      // for(var project of projects){
-      //   if(project.hasOwnProperty('id') && project.id == this.project.id){
-      //       project = this.project;
-      //     }
-      // }
-
       var projects = JSON.parse(localStorage.projects);
        for (var i = 0; i < projects.length; i++) {
-         if(projects[i].id === this.project.id){  //look for match with name
+         if(projects[i].id === this.project.id){  
              projects[i] = this.project;
-             break;  //exit loop since you found the person
+             break;  
          }
       }
       localStorage.setItem("projects", JSON.stringify(projects));  //put the object back
-      // projects.forEach(
-      //   function(project){
-      //     if(project.hasOwnProperty('id') && this.project.id == key){
-      //       project = this.project;
-      //     }
-      //   }
-      // );
-      // localStorage.setItem('projects', JSON.stringify(projects));
     },
     createNote(newNote) {
       //newNote.id = this.project.notes.length + 1;
       this.project.notes.push(newNote);
+      this.updateProject();
+    },
+    createReminder(newReminder) {
+      //newReminder.id = this.project.reminders.length + 1;
+      this.project.reminders.push(newReminder);
       this.updateProject();
     }
   },
