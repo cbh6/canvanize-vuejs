@@ -1,6 +1,6 @@
 # canvanize
 
-> A project startup canvas board application
+> A project startup canvas board application. This is a simpple project to practise VueJS 
 
 ## Build Setup
 
