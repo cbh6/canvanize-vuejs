@@ -27,29 +27,29 @@ export default {
         title: 'Startup A',
         description: 'Project A',
         done: false,
-        notes: [{title: 'Note 1', text: 'Loren ipsum'}, {title: 'Note 2', text: 'dolor'}],
-        reminders: [{date: '10/05/2018', description: 'Go shopping!'}]
+        notes: [{id: 0, title: 'Note 1', text: 'Loren ipsum'}, {id: 1, title: 'Note 2', text: 'dolor'}],
+        reminders: [{id: 0, date: '10/05/2018', description: 'Go shopping!'}]
       }, {
         id: 2,
         title: 'Startup B',
         description: 'Project B',
         done: true,
-        notes: [{title: 'Note 1', text: 'Loren ipsum'},{title: 'Note 2', text: 'dolor'}],
-        reminders: [{date: '10/05/2018', description: 'Go shopping!'}]
+        notes: [{id: 0, title: 'Note 1', text: 'Loren ipsum'},{id: 1, title: 'Note 2', text: 'dolor'}],
+        reminders: [{id: 0, date: '10/05/2018', description: 'Go shopping!'}]
       }, {
         id: 3,
         title: 'Startup C',
         description: 'Project C',
         done: false,
-        notes: [{title: 'Note 1', text: 'Loren ipsum'},{title: 'Note 2', text: 'dolor'}],
-        reminders: [{date: '10/05/2018', description: 'Go shopping!'}]
+        notes: [{id: 0, title: 'Note 1', text: 'Loren ipsum'},{id: 1, title: 'Note 2', text: 'dolor'}],
+        reminders: [{id: 0, date: '10/05/2018', description: 'Go shopping!'}]
       }, {
         id: 4,
         title: 'Startup D',
         description: 'Project D',
         done: false,
-        notes: [{title: 'Note 1', text: 'Loren ipsum'},{title: 'Note 2', text: 'dolor'}],
-        reminders: [{date: '10/05/2018', description: 'Go shopping!'}]
+        notes: [{id: 0, title: 'Note 1', text: 'Loren ipsum'},{id: 1, title: 'Note 2', text: 'dolor'}],
+        reminders: [{id: 0, date: '10/05/2018', description: 'Go shopping!'}]
       }]
     }
   },
