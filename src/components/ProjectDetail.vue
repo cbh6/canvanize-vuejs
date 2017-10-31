@@ -32,6 +32,12 @@
       </div>
     </div>
   </div>
+  <div class="left-floated">
+    <router-link :to="{name: 'ProjectList'}">
+      <button class="ui primary button">Back</button>
+    </router-link>
+  </div>
+
 </div>
 </template>
 
@@ -99,4 +105,7 @@ export default {
 </script>
 
 <style media="screen">
+.left-floated {
+  float:left;
+}
 </style>

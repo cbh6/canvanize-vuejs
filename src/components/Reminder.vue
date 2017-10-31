@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div class="ui icon message left aligned">
-    <div class="content" v-show="!isEditing">
+  <div class="ui icon message left aligned" v-show="!isEditing">
+    <div class="content">
       <div class="header">
         {{ reminder.date }}
       </div>
@@ -15,15 +15,17 @@
           <i class='trash icon'></i>
         </span>
     </div>
-    <div class="content" v-show="isEditing">
+  </div>
+  <div class="ui icon message left aligned" v-show="isEditing">
+    <div class="content">
       <div class='ui form'>
         <div class='field'>
           <label>Date</label>
-          <input type='text' v-model="reminder.date">
+          <input type='text' v-model="reminder.date" @keyup.enter="hideForm">
         </div>
         <div class='field'>
           <label>Description</label>
-          <input type='text' v-model="reminder.description">
+          <input type='text' v-model="reminder.description" @keyup.enter="hideForm">
         </div>
         <div class='ui two button attached buttons'>
           <button class='ui basic blue button' v-on:click="hideForm">

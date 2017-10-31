@@ -8,14 +8,14 @@
         <div class='ui form'>
           <div class='field'>
             <label>Title</label>
-            <input v-model="titleText" type='text'>
+            <input v-model="titleText" type='text' @keyup.enter="sendForm">
           </div>
           <div class='field'>
             <label>Description</label>
-            <input v-model="descText" type='text'>
+            <input v-model="descText" type='text' @keyup.enter="sendForm">
           </div>
           <div class='actions'>
-            <button class='ui approve green button' v-on:click="sendForm()">
+            <button class='ui approve green button' v-on:click="sendForm">
               Create
             </button>
             <button class='ui cancel red button' v-on:click="closeForm">

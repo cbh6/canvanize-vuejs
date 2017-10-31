@@ -1,17 +1,18 @@
 <template>
-  <div class='ui basic content center aligned segment'>
-    <button class='ui basic button icon' v-on:click="openForm">
+<div class='ui basic content center aligned segment'>
+  <button class='ui basic button icon' v-on:click="openForm">
       <i class='plus icon'></i>
     </button>
-    <div class="ui icon message left aligned" v-show="isCreating">
+  <div id="note" class="ui tiny modal card">
+    <div class="content">
       <div class='ui form'>
         <div class='field'>
           <label>Title</label>
-          <input v-model="title" type='text'>
+          <input v-model="title" type='text' @keyup.enter="sendForm">
         </div>
         <div class='field'>
           <label>Text</label>
-          <input v-model="text" type='text'>
+          <input v-model="text" type='text' @keyup.enter="sendForm">
         </div>
         <div class='actions'>
           <button class='ui approve green button' v-on:click="sendForm">
@@ -24,6 +25,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -31,16 +33,15 @@ export default {
   data() {
     return {
       title: '',
-      text: '',
-      isCreating: false,
+      text: ''
     };
   },
   methods: {
     openForm() {
-      this.isCreating = true;
+      $('#note').modal('show');
     },
     closeForm() {
-      this.isCreating = false;
+      $('#note').modal('hide');
     },
     sendForm() {
       if (this.title.length > 0 && this.text.length > 0) {

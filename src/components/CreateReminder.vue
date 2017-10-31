@@ -3,15 +3,16 @@
     <button class='ui basic button icon' v-on:click="openForm">
       <i class='plus icon'></i>
     </button>
-    <div class="ui icon message left aligned" v-show="isCreating">
+    <div id="reminder" class="ui tiny modal card">
+    <div class="content">
       <div class='ui form'>
         <div class='field'>
           <label>Date</label>
-          <input v-model="date" type='text'>
+          <input v-model="date" type='text' @keyup.enter="sendForm">
         </div>
         <div class='field'>
           <label>Description</label>
-          <input v-model="description" type='text'>
+          <input v-model="description" type='text' @keyup.enter="sendForm">
         </div>
         <div class='actions'>
           <button class='ui approve green button' v-on:click="sendForm">
@@ -24,6 +25,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -31,16 +33,15 @@ export default {
   data() {
     return {
       date: '',
-      description: '',
-      isCreating: false,
+      description: ''
     };
   },
   methods: {
     openForm() {
-      this.isCreating = true;
+      $('#reminder').modal('show');
     },
     closeForm() {
-      this.isCreating = false;
+      $('#reminder').modal('hide');
     },
     sendForm() {
       if (this.date.length > 0 && this.description.length > 0) {
