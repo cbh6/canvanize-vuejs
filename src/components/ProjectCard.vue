@@ -3,7 +3,7 @@
     <div class='ui centered fluid link card'>
       <div class='content'>
         <div class='header'>
-          {{ project.title }}
+          {{ project.id }} - {{ project.title }}
         </div>
         <div class='meta'>
           {{ project.description }}

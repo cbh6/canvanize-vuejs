@@ -3,7 +3,7 @@
   <div class='ui centered fluid card'>
     <div class='content'>
       <div class='header'>
-        {{project.title}}
+        {{id}} - {{project.title}}
       </div>
       <div class="description"> {{project.description}}</div>
       <div class="ui horizontal segments">
@@ -61,45 +61,56 @@ export default {
     }
   },
   methods: {
-    getProject: function(id) {
-      var projects = JSON.parse(localStorage.getItem("projects"));
-      return projects.find(function(data) {
-        return data.id == id;
+    updateProject() {
+      this.$http.patch('projects/' + this.id + '.json', this.project)
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonResponse => {
+        this.project = jsonResponse;
       });
+
     },
-    updateProject: function() {
-      var projects = JSON.parse(localStorage.projects);
-      for (var i = 0; i < projects.length; i++) {
-        if (projects[i].id === this.project.id) {
-          projects[i] = this.project;
-          break;
-        }
-      }
-      localStorage.setItem("projects", JSON.stringify(projects)); //put the object back
-    },
-    deleteNote: function(note) {
+    deleteNote(note) {
       const noteIndex = this.project.notes.indexOf(note);
       this.project.notes.splice(noteIndex, 1);
       this.updateProject();
+      // this.$http.delete('projects/' + this.id + '/notes/' + noteIndex + '.json')
+      // .then(response => {
+      //   console.log(response)
+      // });
     },
-    deleteReminder: function(reminder) {
+    deleteReminder(reminder) {
       const reminderIndex = this.project.reminders.indexOf(reminder);
       this.project.reminders.splice(reminderIndex, 1);
       this.updateProject();
     },
     createNote(newNote) {
-      newNote.id = this.project.notes.length + 1;
+      if(this.project.notes == undefined){
+        this.project.notes = [];
+      }
+
+      // newNote.id = this.project.notes[this.project.notes.length - 1].id + 1;
       this.project.notes.push(newNote);
       this.updateProject();
     },
     createReminder(newReminder) {
-      newReminder.id = this.project.reminders.length + 1;
+      if(this.project.reminders == undefined){
+        this.project.reminders = [];
+      }
+
       this.project.reminders.push(newReminder);
       this.updateProject();
     }
   },
-  mounted: function() {
-    this.project = this.getProject(this.id);
+  mounted() {
+    this.$http.get('projects/' + this.id + '.json')
+    .then(response => {
+      return response.json();
+    })
+    .then(jsonResponse => {
+      this.project = jsonResponse;
+    })
   }
 }
 </script>
